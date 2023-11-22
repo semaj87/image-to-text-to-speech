@@ -1,2 +1,40 @@
-# image-to-text-to-speech
-An app that uses Hugging Face AI models to generate text from an image, which then generates audio from the text
+# Generating text & audio from images
+
+An app that uses Hugging Face AI models to generate text from an image, which then generates audio from the text.
+
+This application uses three steps to complete the above-mentioned task:
+* Image to text model to let the machine understand the scenario based upon the content of the photo
+* Use an LLM to generate a short story based on the text that was generated in step 1
+* Lastly, we will use a text to speech model to generate audio for the story from the LLM
+
+
+## System Design
+
+![system-design](img/system-design.drawio.png)
+
+
+## Models
+
+- Image to text model: [blip-image-captioning-large](https://huggingface.co/Salesforce/blip-image-captioning-base)
+- Text to story model: [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5)
+- Story to speech model: [bark](https://huggingface.co/suno/bark)
+
+
+## Prerequisites
+
+- Python3
+- Hugging Face
+- OpenAI
+- Streamlit
+
+
+## Run App
+
+```bash
+source build.sh
+```
+
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
