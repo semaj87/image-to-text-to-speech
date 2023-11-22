@@ -3,3 +3,4 @@ venv
 .env
 .$system-design.drawio.bkp
 system-design.drawio
+generated_audio.flac

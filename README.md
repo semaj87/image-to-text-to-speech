@@ -15,7 +15,7 @@ This application uses three steps to complete the above-mentioned task:
 
 ## Models
 
-- Image to text model: [blip-image-captioning-large](https://huggingface.co/Salesforce/blip-image-captioning-base)
+- Image to text model: [nlpconnect/vit-gpt2-image-captioning](https://huggingface.co/nlpconnect/vit-gpt2-image-captioning)
 - Text to story model: [gpt-3.5-turbo](https://platform.openai.com/docs/models/gpt-3-5)
 - Story to speech model: [bark](https://huggingface.co/suno/bark)
 
@@ -28,11 +28,14 @@ This application uses three steps to complete the above-mentioned task:
 - Streamlit
 
 
-## Run App
+## Run App Locally
 
 ```bash
 source build.sh
 ```
+
+## Run App with Streamlit Cloud
+[Launch App](https://image-to-text-to-speech-84q4gdevv5yxelzyzkfxiy.streamlit.app/)
 
 
 ## License

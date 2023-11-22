@@ -1,4 +1,5 @@
 import os
+import time
 from typing import Any
 
 import requests
@@ -13,16 +14,35 @@ load_dotenv(find_dotenv())
 HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
 
 
+def progress_bar(amount_of_time: int) -> Any:
+    """
+    A very simple progress bar the increases over time,
+    then disappears when it reached completion
+    :param amount_of_time: time taken
+    :return: None
+    """
+    progress_text = "Please wait, Generative models hard at work"
+    my_bar = st.progress(0, text=progress_text)
+
+    for percent_complete in range(amount_of_time):
+        time.sleep(0.04)
+        my_bar.progress(percent_complete + 1, text=progress_text)
+    time.sleep(1)
+    my_bar.empty()
+
+
 def generate_text_from_image(url: str) -> str:
     """
     A function that uses the blip model to generate text from an image.
     :param url: image location
     :return: text: generated text from the image
     """
-    image_to_text: Any = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
+    image_to_text: Any = pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
 
     generated_text: str = image_to_text(url)[0]["generated_text"]
 
+    print(f"IMAGE INPUT: {url}")
+    print(f"GENERATED TEXT OUTPUT: {generated_text}")
     return generated_text
 
 
@@ -49,7 +69,8 @@ def generate_story_from_text(scenario: str) -> str:
 
     generated_story: str = story_llm.predict(scenario=scenario)
 
-    print(generated_story)
+    print(f"TEXT INPUT: {scenario}")
+    print(f"GENERATED STORY OUTPUT: {generated_story}")
     return generated_story
 
 
@@ -71,25 +92,26 @@ def generate_speech_from_text(message: str) -> Any:
 
 
 def main():
-    st.set_page_config(page_title="Image to audio story", page_icon="🧠")
+    st.set_page_config(page_title="Image to audio story", page_icon="🤖")
 
     st.header("Generate an audio story from an image")
-    uploaded_file: Any = st.file_uploader("Choose an image to upload...", type="jpg")
+    uploaded_file: Any = st.file_uploader("Please choose a file to upload", type="jpg")
 
     if uploaded_file is not None:
         print(uploaded_file)
         bytes_data: Any = uploaded_file.getvalue()
         with open(uploaded_file.name, "wb") as file:
             file.write(bytes_data)
-        st.image(uploaded_file, caption="Uploaded Image.",
+        st.image(uploaded_file, caption="Uploaded Image",
                  use_column_width=True)
-        scenario: str = generate_text_from_image("tommy-caldwell.jpeg")
+        progress_bar(100)
+        scenario: str = generate_text_from_image(uploaded_file.name)
         story: str = generate_story_from_text(scenario)
         generate_speech_from_text(story)
 
-        with st.expander("scenario"):
+        with st.expander("Generated scenario"):
             st.write(scenario)
-        with st.expander("story"):
+        with st.expander("Generated story"):
             st.write(story)
 
         st.audio("generated_audio.flac")
