@@ -69,29 +69,31 @@ def generate_speech_from_text(message: str) -> Any:
     with open("generated_audio.flac", "wb") as file:
         file.write(response.content)
 
-    def main():
-        st.set_page_config(page_title="Image to audio story", page_icon="🧠")
 
-        st.header("Generate an audio story from an image")
-        uploaded_file: Any = st.file_uploader("Choose an image to upload...", type="jpg")
+def main():
+    st.set_page_config(page_title="Image to audio story", page_icon="🧠")
 
-        if uploaded_file is not None:
-            print(uploaded_file)
-            bytes_data: Any = uploaded_file.getvalue()
-            with open(uploaded_file.name, "wb") as file:
-                file.write(bytes_data)
-            st.image(uploaded_file, caption="Uploaded Image.",
-                     use_column_width=True)
-            scenario: str = generate_text_from_image("tommy-caldwell.jpeg")
-            story: str = generate_story_from_text(scenario)
-            generate_speech_from_text(story)
+    st.header("Generate an audio story from an image")
+    uploaded_file: Any = st.file_uploader("Choose an image to upload...", type="jpg")
 
-            with st.expander("scenario"):
-                st.write(scenario)
-            with st.expander("story"):
-                st.write(story)
+    if uploaded_file is not None:
+        print(uploaded_file)
+        bytes_data: Any = uploaded_file.getvalue()
+        with open(uploaded_file.name, "wb") as file:
+            file.write(bytes_data)
+        st.image(uploaded_file, caption="Uploaded Image.",
+                 use_column_width=True)
+        scenario: str = generate_text_from_image("tommy-caldwell.jpeg")
+        story: str = generate_story_from_text(scenario)
+        generate_speech_from_text(story)
 
-            st.audio("generated_audio.flac")
+        with st.expander("scenario"):
+            st.write(scenario)
+        with st.expander("story"):
+            st.write(story)
 
-    if __name__ == "__main__":
-        main()
+        st.audio("generated_audio.flac")
+
+
+if __name__ == "__main__":
+    main()
