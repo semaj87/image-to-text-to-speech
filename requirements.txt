@@ -3,3 +3,4 @@ python-dotenv==1.0.0
 Requests==2.31.0
 streamlit==1.28.2
 transformers==4.24.0
+torch==2.1.0
