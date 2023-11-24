@@ -12,6 +12,7 @@ from transformers import pipeline
 
 load_dotenv(find_dotenv())
 HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 def progress_bar(amount_of_time: int) -> Any:
