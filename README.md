@@ -35,7 +35,7 @@ source build.sh
 ```
 
 ## Run App with Streamlit Cloud
-[Launch App](https://generative-story-telling.streamlit.app/)
+[Launch App](https://generative-story-teller.streamlit.app/)
 
 
 ## License
