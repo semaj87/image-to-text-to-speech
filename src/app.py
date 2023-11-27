@@ -95,6 +95,10 @@ def generate_speech_from_text(message: str) -> Any:
 def main():
     st.set_page_config(page_title="Image to audio story", page_icon="🤖")
 
+    with st.sidebar:
+        st.image("img/app-logo.jpg")
+        # st.write("App created by James Aymer")
+
     st.header("Generate an audio story from an image")
     uploaded_file: Any = st.file_uploader("Please choose a file to upload", type="jpg")
 
