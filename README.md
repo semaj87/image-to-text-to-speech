@@ -20,12 +20,11 @@ This application uses three steps to complete the above-mentioned task:
 - Story to speech model: [bark](https://huggingface.co/suno/bark)
 
 
-## Prerequisites
+## Requirements
 
-- Python3
-- Hugging Face
-- OpenAI
-- Streamlit
+```bash
+python -m pip install -r requirements.txt
+```
 
 
 ## Run App Locally
