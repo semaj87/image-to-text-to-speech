@@ -35,6 +35,7 @@ source build.sh
 
 
 ## Run App with Streamlit Cloud
+
 [Launch App](https://generative-stories.streamlit.app/)
 
 
