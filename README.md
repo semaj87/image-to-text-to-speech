@@ -33,8 +33,9 @@ python -m pip install -r requirements.txt
 source build.sh
 ```
 
+
 ## Run App with Streamlit Cloud
-[Launch App](https://generative-story-teller.streamlit.app/)
+[Launch App](https://generative-stories.streamlit.app/)
 
 
 ## License
