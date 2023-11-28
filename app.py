@@ -10,6 +10,8 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from transformers import pipeline
 
+from utils.custom import css_code
+
 load_dotenv(find_dotenv())
 HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -92,8 +94,14 @@ def generate_speech_from_text(message: str) -> Any:
         file.write(response.content)
 
 
-def main():
+def main() -> None:
+    """
+    Main function
+    :return: None
+    """
     st.set_page_config(page_title="Image to audio story", page_icon="img/webworks87-favicon-light.png", layout="wide")
+
+    st.markdown(css_code, unsafe_allow_html=True)
 
     with st.sidebar:
         st.image("img/webworks87-light-logo.jpg")
